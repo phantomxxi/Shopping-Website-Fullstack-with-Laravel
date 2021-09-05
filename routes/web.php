@@ -18,3 +18,10 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home');
 });
+
+Route::prefix('categories')->group(function () {
+    Route::get('/create', [
+        'as' => 'categories.create',
+        'uses' => 'CategoryController@create'
+    ]);
+});
