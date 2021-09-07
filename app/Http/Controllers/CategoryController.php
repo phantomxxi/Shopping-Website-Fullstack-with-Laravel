@@ -15,7 +15,6 @@ class CategoryController extends Controller
 
     }
     public function create(){
-
         $data = $this->category->all();
         $recusive = new Recusive($data);
         $htmlOption = $recusive->categoryRecusive();
@@ -26,7 +25,8 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return view('category.index');
+        $categories = $this->category->latest()->paginate(5);
+        return view('category.index', compact('categories'));
     }
 
     public function store(Request $request)
@@ -39,4 +39,13 @@ class CategoryController extends Controller
         return redirect() -> route('categories.index');
     }
 
+    public function edit($id)
+    {
+
+    }
+
+    public function delete($id)
+    {
+
+    }
 }
