@@ -4,49 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use App\Components\Recusive;
 
 class CategoryController extends Controller
 {
-    public $htmlSelect;
-    public function __construct()
+    public $category;
+    public function __construct(Category $category)
     {
-        $this->htmlSelect = '';
+        $this->category = $category;
+
     }
     public function create(){
-//        $data = Category::all();
-//        foreach ($data as $value){
-//            if ($value['parent_id'] == 0){
-//                echo "<option>" .$value['name']. "</option>";
-//                foreach ($data as $value2) {
-//                    if ($value2['parent_id'] == $value['id']){
-//                        echo "<option>" .$value2['name']. "</option>" ;
-//                        foreach ($data as $value3) {
-//                            if ($value3['parent_id'] == $value2['id']){
-//                                echo "<option>"  .$value3['name']. "</option>";
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-        $htmlOption = $this->categoryRecusive(0);
+
+        $data = $this->category->all();
+        $recusive = new Recusive($data);
+        $htmlOption = $recusive->categoryRecusive();
         return view('category.add', compact('htmlOption'));
     }
 
-    function categoryRecusive($id, $text = ''){
-        $data = Category::all();
-        foreach ($data as $value){
-            if($value['parent_id'] == $id) {
-                $this->htmlSelect .= "<option>" . '-' .$value['name']. "</option>";
-                $this->categoryRecusive($value['id'], $text . '-');
-            }
-        }
-        return $this->htmlSelect;
-    }
+
 
     public function index()
     {
         return view('category.index');
+    }
+
+    public function store(Request $request)
+    {
+        $this->category->create([
+           'name' => $request -> name,
+            'parent_id' => $request -> parent_id,
+            'slug' => str_slug($request -> name)
+        ]);
+        return redirect() -> route('categories.index');
     }
 
 }
