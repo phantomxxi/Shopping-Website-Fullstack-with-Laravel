@@ -24,6 +24,7 @@
                                 <label >Chọn menus cha</label>
                                 <select class="form-control" name="parent_id">
                                     <option value="0">Chọn menus cha</option>
+                                    {!! $optionSelect !!}
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
