@@ -35,4 +35,11 @@ class MenuController extends Controller
         ]);
         return redirect()->route('menus.index');
     }
+
+    public function edit($id, Request $request)
+    {
+        $menuFollowEdit = $this->menu->find($id); // bind name doi tuong can edit vao route menus edit
+        $optionSelect = $this->menuRecusive->menuRecusiveEdit($menuFollowEdit->parent_id);
+        return view('menus.edit', compact('optionSelect', 'menuFollowEdit'));
+    }
 }
