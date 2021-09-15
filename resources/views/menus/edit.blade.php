@@ -14,7 +14,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="{{ route('menus.store') }}" method="post">
+                        <form action="{{ route('menus.update', ['id' => $menuFollowEdit->id]) }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label>Tên menus</label>
