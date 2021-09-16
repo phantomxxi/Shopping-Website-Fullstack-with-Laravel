@@ -52,4 +52,10 @@ class MenuController extends Controller
         ]);
         return redirect()->route('menus.index');
     }
+
+    public function delete($id, Request $request)
+    {
+        $this->menu->find($id)->delete();
+        return redirect()->route('menus.index');
+    }
 }
