@@ -18,12 +18,12 @@ class MenuController extends Controller
     public function index()
     {
         $menus = $this->menu->paginate(10);
-        return view('menus.index', compact('menus'));
+        return view('admin.menus.index', compact('menus'));
     }
 
     public function create(){
         $optionSelect = $this->menuRecusive->menuRecusiveAdd();
-        return view('menus.add', compact('optionSelect'));
+        return view('admin.menus.add', compact('optionSelect'));
     }
 
     public function store(Request $request)
@@ -40,7 +40,7 @@ class MenuController extends Controller
     {
         $menuFollowEdit = $this->menu->find($id); // bind name doi tuong can edit vao route menus edit
         $optionSelect = $this->menuRecusive->menuRecusiveEdit($menuFollowEdit->parent_id);
-        return view('menus.edit', compact('optionSelect', 'menuFollowEdit'));
+        return view('admin.menus.edit', compact('optionSelect', 'menuFollowEdit'));
     }
 
     public function update($id, Request $request)
