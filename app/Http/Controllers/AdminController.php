@@ -9,6 +9,9 @@ class AdminController extends Controller
     // view form login
     public function loginAdmin()
     {
+        if (auth()->check()){
+            return redirect()->to('home');
+        }
         return view('login');
     }
 
