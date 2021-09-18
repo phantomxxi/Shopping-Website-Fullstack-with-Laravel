@@ -37075,7 +37075,7 @@ var OS2 = new r.VersionedStruct(r.uint16, {
     sFamilyClass: r.int16, // classification of font-family design
     panose: new r.Array(r.uint8, 10), // describe the visual characteristics of a given typeface
     ulCharRange: new r.Array(r.uint32, 4),
-    vendorID: new r.String(4), // four character identifier for the font vendor
+    vendorID: new r.String(4), // four character identifier for the font vendors
     fsSelection: new r.Bitfield(r.uint16, [// bit field containing information about the font
     'italic', 'underscore', 'negative', 'outlined', 'strikeout', 'bold', 'regular', 'useTypoMetrics', 'wws', 'oblique']),
     usFirstCharIndex: r.uint16, // The minimum Unicode index in this font

@@ -129,7 +129,7 @@ declare const FILTERIZR_STATE: {
 };
 export { FILTERIZR_STATE };
 /**
- * Transition end events with vendor prefixing
+ * Transition end events with vendors prefixing
  */
 declare const TRANSITION_END_EVENTS: string[];
 export { TRANSITION_END_EVENTS };

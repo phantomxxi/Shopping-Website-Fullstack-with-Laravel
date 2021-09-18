@@ -302,12 +302,12 @@
             }
 
             /**
-             * Gets the vendor-prefixed CSS property by the given name.
+             * Gets the vendors-prefixed CSS property by the given name.
              * For example the given name is "transform" and you're using a old Firefox browser then the returned value would be "-moz-transform".
-             * If the browser doesn't need a vendor-prefix, then the returned string is the given name.
-             * If the browser doesn't support the given property name at all (not even with a vendor-prefix) the returned value is null.
+             * If the browser doesn't need a vendors-prefix, then the returned string is the given name.
+             * If the browser doesn't support the given property name at all (not even with a vendors-prefix) the returned value is null.
              * @param propName The unprefixed CSS property name.
-             * @returns {string|null} The vendor-prefixed CSS property or null if the browser doesn't support the given CSS property.
+             * @returns {string|null} The vendors-prefixed CSS property or null if the browser doesn't support the given CSS property.
 
             cssProp : function(propName) {
                 return VENDORS._cssProperty(propName);
