@@ -6,6 +6,8 @@ use App\Category;
 use App\Components\Recusive;
 use App\Product;
 use App\ProductImage;
+use App\ProductTag;
+use App\Tag;
 use App\Traits\StorageImageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -17,11 +19,14 @@ class AdminProductController extends Controller
     private $category;
     private $product;
 
-    public function __construct(Category $category, Product $product, ProductImage $productImage)
+    public function __construct(Category $category, Product $product, ProductImage $productImage, Tag $tag, ProductTag $productTag)
     {
         $this->category = $category;
         $this->product = $product;
         $this->productImage = $productImage;
+        $this->tag = $tag;
+        $this->productTag = $productTag;
+
     }
 
     public function index()
@@ -60,28 +65,24 @@ class AdminProductController extends Controller
         $product = $this->product->create($dataProductCreate);
 
 //        Insert data to product_images
-//        if ($request->hasFile('image_path')) {
-//            foreach ($request->image_path as $fileItem) {
-//                $dataProductImageDetail = $this->storageTraitUploadMutiple($fileItem, 'product');
-//                // Dung Eloquent Relationships create method
-//                $product->images()->create([
-//                    'image_path' => $dataProductImageDetail['file_path'],
-//                    'image_name' => $dataProductImageDetail['file_name'],
-//                ]);
-//            }
-//        }
-
-        if ( $request->hasFile('image_path') ) {
+        if ($request->hasFile('image_path')) {
             foreach ($request->image_path as $fileItem) {
                 $dataProductImageDetail = $this->storageTraitUploadMultiple($fileItem, 'product');
+                // Dung Eloquent Relationships create method
                 $product->images()->create([
                     'image_path' => $dataProductImageDetail['file_path'],
-                    'image_name' => $dataProductImageDetail['file_name']
-
+                    'image_name' => $dataProductImageDetail['file_name'],
                 ]);
             }
         }
 
+        // Insert tags for product
+        foreach ($request->tags as $tagItems) {
+            // Insert to tags
+            $tagInstance = $this->tag->firstOrCreate(['name' => $tagItems]); // Eloquent firstOrCreate dung de tranh duplicate du lieu da co
+            $tagIds[] = $tagInstance->id;
+        }
+        $product->tags()->attach($tagIds);
 
     }
 }

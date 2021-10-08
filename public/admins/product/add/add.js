@@ -2,7 +2,7 @@ $(function (){
     // JS Tags
     $(".tags_select_choose").select2({
         tags: true,
-        tokenSeparators: [',', ' ']
+        tokenSeparators: [',']
     })
     // JS danh muc
     $(".select2_init").select2({
