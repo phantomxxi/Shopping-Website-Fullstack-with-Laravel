@@ -9,7 +9,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        @include('partials.content-header', ['name' => 'Home', 'key' => 'home']);
+        @include('partials.content-header', ['name' => 'Home', 'key' => 'home'])
         <!-- /.content-header -->
 
         <!-- Main content -->

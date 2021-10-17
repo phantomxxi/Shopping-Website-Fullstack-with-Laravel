@@ -14,7 +14,7 @@
 
 @section('content')
     <div class="content-wrapper">
-        @include('partials.content-header', ['name' => 'product', 'key' => 'List']);
+        @include('partials.content-header', ['name' => 'product', 'key' => 'List'])
 
         <div class="content">
             <div class="container-fluid">
@@ -43,7 +43,7 @@
                                     <td>
                                         <img class="product_image_150_100" src="{{ $productItem->feature_image_path }}" alt="">
                                     </td>
-                                    <td>{{ optional($productItem->category)->name }}</td>S
+                                    <td>{{ optional($productItem->category)->name }}</td>
                                     <td>
                                         <a href="{{ route('product.edit', ['id'=>$productItem->id]) }}" class="btn btn-default">Edit</a>
                                         <a href="" class="btn btn-danger">Delete</a>
