@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    use SoftDeletes;
     protected $guarded = [];
     // Eloquent Relationships: One to many (nhieu anh thuoc ve 1 san pham)
     public function images() {
