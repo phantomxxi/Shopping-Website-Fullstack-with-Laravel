@@ -15,6 +15,17 @@
 
     <div class="content-wrapper">
         @include('partials.content-header', ['name' => 'product', 'key' => 'Add'])
+        <div class="col-md-12">
+{{--            @if ($errors->any())--}}
+{{--                <div class="alert alert-danger">--}}
+{{--                    <ul>--}}
+{{--                        @foreach ($errors->all() as $error)--}}
+{{--                            <li>{{ $error }}</li>--}}
+{{--                        @endforeach--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            @endif--}}
+        </div>
         <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
             <div class="content">
                 <div class="container-fluid">
@@ -25,18 +36,24 @@
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
                                 <input type="text"
-                                       class="form-control"
+                                       class="form-control @error('name') is-invalid @enderror"
                                        name="name"
                                        placeholder="Nhập tên sản phẩm"
                                 >
+                                @error('name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Giá sản phẩm</label>
                                 <input type="text"
-                                       class="form-control"
+                                       class="form-control @error('price') is-invalid @enderror"
                                        name="price"
                                        placeholder="Nhập giá sản phẩm"
                                 >
+                                @error('price')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
@@ -59,15 +76,21 @@
 
                             <div class="form-group">
                                 <label>Chọn danh mục</label>
-                                <select class="form-control select2_init" name="category_id">
+                                <select class="form-control select2_init @error('category_id') is-invalid @enderror"
+                                        name="category_id">
                                     <option value="">Chọn danh mục</option>
                                     {!! $htmlOption !!}
                                 </select>
+                                @error('category_id')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <label>Nhập tags cho sản phẩm</label>
-                                <select name="tags[]" class="form-control tags_select_choose" multiple="multiple">
+                                <select name="tags[]"
+                                        class="form-control tags_select_choose"
+                                        multiple="multiple">
 
                                 </select>
                             </div>
@@ -76,11 +99,18 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Nhập nội dung</label>
-                                <textarea name="contents" class="form-control tinymce_editor_init" rows="8"></textarea>
+                                <textarea name="contents"
+                                          class="form-control tinymce_editor_init @error('content') is-invalid @enderror"
+                                          rows="8"></textarea>
+                                @error('content')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
+
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit"
+                                    class="btn btn-primary">Submit</button>
                         </div>
 
 
