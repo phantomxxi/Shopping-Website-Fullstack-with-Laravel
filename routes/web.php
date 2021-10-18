@@ -102,6 +102,16 @@ Route::prefix('admin')->group(function () {
     });
 });
 
+// Slider
+    Route::prefix('product')->group(function () {
+        Route::get('/', [
+            'as' => 'slider.index',
+            'uses' => 'SliderAdminController@index'
+        ]);
+
+});
+
+
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
