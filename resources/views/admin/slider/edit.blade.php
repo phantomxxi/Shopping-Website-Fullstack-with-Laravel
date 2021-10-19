@@ -11,13 +11,13 @@
 @section('content')
 
     <div class="content-wrapper">
-        @include('partials.content-header', ['name' => 'Sliders', 'key' => 'Add'])
+        @include('partials.content-header', ['name' => 'Sliders', 'key' => 'Edit'])
 
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('slider.update', ['id'=>$slider->id]) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Tên slider</label>
@@ -25,7 +25,7 @@
                                        name="name"
                                        class="form-control @error('name') is-invalid @enderror"
                                        placeholder="Nhập tên slider"
-                                       value="{{ old('name') }}"
+                                       value="{{ $slider->name }}"
                                 >
                                 @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -37,7 +37,7 @@
                                 <textarea
                                     class="form-control @error('description') is-invalid @enderror"
                                     name="description"
-                                    rows="4">{{ old('description') }}</textarea>
+                                    rows="4">{{ $slider->description }}</textarea>
                                 @error('description')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -48,8 +48,12 @@
                                 <input type="file"
                                        name="image_path"
                                        class="form-control @error('image_path') is-invalid @enderror"
-                                       value="{{ old('image_path') }}"
                                 >
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <img class="image_slider" src="{{ $slider->image_path }}" alt="">
+                                    </div>
+                                </div>
                                 @error('image_path')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

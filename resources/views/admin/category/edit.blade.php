@@ -8,7 +8,7 @@
 @section('content')
 
     <div class="content-wrapper">
-        @include('partials.content-header', ['name' => 'category', 'key' => 'Edit'])
+        @include('partials.content-header', ['name' => 'Category', 'key' => 'Edit'])
 
         <div class="content">
             <div class="container-fluid">
