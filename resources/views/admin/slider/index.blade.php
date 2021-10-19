@@ -2,7 +2,10 @@
 
 @section('title')
     <title>Trang chu</title>
+@endsection
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('admins/slider/index/index.css') }}">
 @endsection
 
 @section('content')
@@ -27,23 +30,25 @@
                             </tr>
                             </thead>
                             <tbody>
-{{--                            @foreach($menus as $menu)--}}
+                            @foreach($sliders as $slider)
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Slider 1</td>
-                                    <td>Mô tả</td>
-                                    <td></td>
+                                    <th scope="row">{{ $slider->id }}</th>
+                                    <td>{{ $slider->name }}</td>
+                                    <td>{{ $slider->description }}</td>
+                                    <td>
+                                        <img class="image_slider_150_100" src="{{ $slider->image_path }}" alt="">
+                                    </td>
                                     <td>
                                         <a href="" class="btn btn-default">Edit</a>
                                         <a href="" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
-{{--                            @endforeach--}}
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="col-md-12">
-{{--                        {{ $menus->links()}}--}}
+                        {{ $sliders->links()}}
                     </div>
                 </div>
             </div>

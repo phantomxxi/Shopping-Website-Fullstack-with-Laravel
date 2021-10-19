@@ -16,7 +16,8 @@ class SliderAdminController extends Controller
         $this->slider=$slider;
     }
     public function index(){
-        return view('admin.slider.index');
+        $sliders = $this->slider->latest()->paginate(5);
+        return view('admin.slider.index', compact('sliders'));
     }
     public function create(){
         return view('admin.slider.add');
