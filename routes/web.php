@@ -132,10 +132,14 @@ Route::prefix('admin')->group(function () {
 
 //  Setting
     Route::prefix('settings')->group(function () {
-    Route::get('/', [
-        'as' => 'settings.index',
-        'uses' => 'AdminSettingController@index'
-    ]);
+        Route::get('/', [
+            'as' => 'settings.index',
+            'uses' => 'AdminSettingController@index'
+        ]);
+        Route::get('/create', [
+            'as' => 'settings.create',
+            'uses' => 'AdminSettingController@create'
+        ]);
 
 });
 
