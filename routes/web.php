@@ -73,7 +73,7 @@ Route::prefix('admin')->group(function () {
         ]);
     });
 
-//    Product
+//  Product
     Route::prefix('product')->group(function () {
         Route::get('/', [
             'as' => 'product.index',
@@ -102,8 +102,8 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-// Slider
-    Route::prefix('product')->group(function () {
+//  Slider
+    Route::prefix('slider')->group(function () {
         Route::get('/', [
             'as' => 'slider.index',
             'uses' => 'SliderAdminController@index'
@@ -128,6 +128,15 @@ Route::prefix('admin')->group(function () {
             'as' => 'slider.delete',
             'uses' => 'SliderAdminController@delete'
         ]);
+});
+
+//  Setting
+    Route::prefix('settings')->group(function () {
+    Route::get('/', [
+        'as' => 'settings.index',
+        'uses' => 'AdminSettingController@index'
+    ]);
+
 });
 
 
