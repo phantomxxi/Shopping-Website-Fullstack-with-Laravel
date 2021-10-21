@@ -27,7 +27,12 @@ class AdminSettingController extends Controller
         $this->setting->create([
             'config_key' => $request -> config_key,
             'config_value' => $request -> config_value,
+            'type' => $request -> type,
         ]);
         return redirect()->route('settings.index');
+    }
+
+    public function edit($id){
+        return view('admin.setting.edit');
     }
 }

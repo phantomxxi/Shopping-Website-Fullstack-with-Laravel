@@ -8,9 +8,13 @@
     <link rel="stylesheet" href="{{ asset('admins/setting/index/index.css') }}">
 @endsection
 
+
+
+
 @section('content')
+
     <div class="content-wrapper">
-        @include('partials.content-header', ['name' => 'Settings', 'key' => 'List'])
+        @include('partials.content-header', ['name' => 'settings', 'key' => 'List'])
 
         <div class="content">
             <div class="container-fluid">
@@ -38,30 +42,34 @@
                             </tr>
                             </thead>
                             <tbody>
+
                             @foreach($settings as $setting)
+
                                 <tr>
-                                    <th scope="row">{{$setting->id}}</th>
-                                    <td>{{$setting->config_key}}</td>
-                                    <td>{{$setting->config_value}}</td>
+                                    <th scope="row">{{ $setting->id }}</th>
+                                    <td>{{ $setting->config_key }}</td>
+                                    <td>{{ $setting->config_value }}</td>
                                     <td>
-                                        <a href=""
+                                        <a href="{{ route('settings.edit', ['id' => $setting->id]) . '?type=' . $setting->type}}"
                                            class="btn btn-default">Edit</a>
                                         <a href=""
                                            class="btn btn-danger">Delete</a>
+
                                     </td>
                                 </tr>
                             @endforeach
+
                             </tbody>
                         </table>
                     </div>
                     <div class="col-md-12">
-                        {{ $settings->links()}}
+                        {{ $settings->links() }}
                     </div>
+
                 </div>
             </div>
         </div>
+
     </div>
+
 @endsection
-
-
-
