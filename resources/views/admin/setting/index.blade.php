@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="{{ asset('admins/setting/index/index.css') }}">
 @endsection
 
+@section('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="{{ asset('admins/main.js') }}"></script>
+@endsection
+
 
 
 
@@ -53,7 +58,8 @@
                                         <a href="{{ route('settings.edit', ['id' => $setting->id]) . '?type=' . $setting->type}}"
                                            class="btn btn-default">Edit</a>
                                         <a href=""
-                                           class="btn btn-danger">Delete</a>
+                                           data-url="{{ route('settings.delete', ['id' => $setting->id]) }}"
+                                           class="btn btn-danger action_delete">Delete</a>
 
                                     </td>
                                 </tr>
