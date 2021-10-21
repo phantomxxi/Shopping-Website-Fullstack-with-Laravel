@@ -43,8 +43,8 @@
                                        name="config_value"
                                        class="form-control @error('config_value') is-invalid @enderror"
                                        placeholder="Nhập config key"
-                                       rows="5">
-                                </textarea>
+                                       rows="5"
+                                ></textarea>
                                 @error('config_value')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
