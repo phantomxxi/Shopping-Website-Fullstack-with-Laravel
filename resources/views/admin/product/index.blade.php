@@ -10,7 +10,7 @@
 
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('admins/product/index/list.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admins/main.js') }}"></script>
 @endsection
 
 @section('content')
