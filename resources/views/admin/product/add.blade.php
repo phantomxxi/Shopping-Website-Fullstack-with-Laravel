@@ -71,19 +71,11 @@
                                 <label>Ảnh chi tiết</label>
                                 <input type="file"
                                        multiple
-                                       class="form-control-file mb-2"
+                                       class="form-control-file mb-2 preview_image_detail"
                                        name="image_path[]"
                                 >
-                                <div class="row">
-                                    <div class="card col-md-3 mr-2">
-                                        <img class="card-img-top" src="https://icdn.dantri.com.vn/zoom/654_490//2020/03/28/bachmai-1585359240671.jpg" alt="">
-                                    </div>
-                                    <div class="card col-md-3 mr-2">
-                                        <img class="card-img-top" src="https://icdn.dantri.com.vn/zoom/654_490//2020/03/28/bachmai-1585359240671.jpg" alt="">
-                                    </div>
-                                    <div class="card col-md-3 mr-2">
-                                        <img class="card-img-top" src="https://icdn.dantri.com.vn/zoom/654_490//2020/03/28/bachmai-1585359240671.jpg" alt="">
-                                    </div>
+                                <div class="row image_detail_wrapper">
+
                                 </div>
                             </div>
 
