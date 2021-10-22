@@ -1,6 +1,6 @@
 function renderHtmlImage(srcImage) {
     return `<div class="card col-md-3 mr-2">
-        <img class="card-img-top" src="${srcImage}" alt="">
+        <img class="card-img-top image_detail_product" src="${srcImage}" alt="">
         </div>`;
 }
 function loadPreviewMutipleImage() {

@@ -11,14 +11,26 @@
 |
 */
 
-Route::get('/admin', 'AdminController@loginAdmin');
-Route::post('/admin', 'AdminController@postLoginAdmin');
-
 Route::get('/home', function () {
     return view('home');
 });
 
 Route::prefix('admin')->group(function () {
+
+    Route::get('/', [
+        'as' => 'admin.login',
+        'uses' => 'AdminController@loginAdmin'
+    ]);
+    Route::post('/', [
+        'as' => 'admin.post-login',
+        'uses' => 'AdminController@postLoginAdmin'
+    ]);
+
+    Route::get('/logout', [
+        'as' => 'admin.logout',
+        'uses' => 'AdminController@logout'
+    ]);
+
     Route::prefix('categories')->group(function () {
         Route::get('/', [
             'as' => 'categories.index',
