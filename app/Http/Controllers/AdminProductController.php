@@ -37,8 +37,9 @@ class AdminProductController extends Controller
 
     public function index()
     {
+        $htmlOption = $this->getCategory($parentId = '');
         $products = $this->product->latest()->paginate(5);
-        return view('admin.product.index', compact('products'));
+        return view('admin.product.index', compact('products', 'htmlOption'));
     }
 
     public function create()
