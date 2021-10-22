@@ -79,6 +79,11 @@ Route::prefix('admin')->group(function () {
             'as' => 'product.index',
             'uses' => 'AdminProductController@index'
         ]);
+        Route::get('/search', [
+            'as' => 'product.search',
+            'uses' => 'AdminProductController@search'
+        ]);
+
         Route::get('/create', [
             'as' => 'product.create',
             'uses' => 'AdminProductController@create'

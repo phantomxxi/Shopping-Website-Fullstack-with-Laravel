@@ -28,8 +28,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $recusive = new Recusive(Category::all());
-        $htmlOption = $recusive->categoryRecusive($parentId = '');
-        View::share('htmlOption', $htmlOption);
+        $htmlOptionSearchHeader = $recusive->categoryRecusive($parentId = '');
+        View::share('htmlOptionSearchHeader', $htmlOptionSearchHeader);
         Schema::defaultStringLength(191);
     }
 }
