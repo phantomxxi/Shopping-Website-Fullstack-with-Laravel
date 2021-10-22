@@ -2,8 +2,12 @@
 
 @section('title')
     <title>Trang chu</title>
-
 @endsection
+
+@section('header')
+    @include('partials.header-category')
+@endsection
+
 
 @section('content')
     <div class="content-wrapper">

@@ -10,7 +10,6 @@
             <input type="text" class="form-control" name="product_id"
                    value="{{ request()->product_id }}"
                    placeholder="Nhập Id">
-
         </div>
 
         <div class="form-group mx-sm-2 mb-2">
@@ -42,7 +41,6 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
-
         <li class="nav-item">
             <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
                     class="fas fa-th-large"></i></a>

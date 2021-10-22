@@ -13,6 +13,10 @@
     <script type="text/javascript" src="{{ asset('admins/main.js') }}"></script>
 @endsection
 
+@section('header')
+    @include('partials.header-product')
+@endsection
+
 @section('content')
     <div class="content-wrapper">
         @include('partials.content-header', ['name' => 'Product', 'key' => 'List'])
