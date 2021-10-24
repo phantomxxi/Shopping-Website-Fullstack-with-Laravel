@@ -37,16 +37,8 @@ class AdminProductController extends Controller
 
     public function index()
     {
-        $htmlOption = $this->getCategory($parentId = '');
         $products = $this->product->latest()->paginate(5);
-        return view('admin.product.index', compact('products', 'htmlOption'));
-    }
-
-    public function search(Request $request)
-    {
-        $products = $this->product->getProductSearch($request);
         return view('admin.product.index', compact('products'));
-
     }
 
     public function create()
@@ -84,7 +76,7 @@ class AdminProductController extends Controller
             // Insert data to product_images
             if ($request->hasFile('image_path')) {
                 foreach ($request->image_path as $fileItem) {
-                    $dataProductImageDetail = $this->storageTraitUploadMultiple($fileItem, 'product');
+                    $dataProductImageDetail = $this->storageTraitUploadMutiple($fileItem, 'product');
                     $product->images()->create([
                         'image_path' => $dataProductImageDetail['file_path'],
                         'image_name' => $dataProductImageDetail['file_name']
@@ -108,15 +100,19 @@ class AdminProductController extends Controller
             DB::rollBack();
             Log::error('Message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
         }
+
+
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $product = $this->product->find($id);
         $htmlOption = $this->getCategory($product->category_id);
         return view('admin.product.edit', compact('htmlOption', 'product'));
     }
 
-    public function update($id, Request $request){
+    public function update(Request $request, $id)
+    {
         try {
             DB::beginTransaction();
             $dataProductUpdate = [
@@ -128,16 +124,17 @@ class AdminProductController extends Controller
             ];
             $dataUploadFeatureImage = $this->storageTraitUpload($request, 'feature_image_path', 'product');
             if (!empty($dataUploadFeatureImage)) {
-                $dataProductCreate['feature_image_name'] = $dataUploadFeatureImage['file_name'];
-                $dataProductCreate['feature_image_path'] = $dataUploadFeatureImage['file_path'];
+                $dataProductUpdate['feature_image_name'] = $dataUploadFeatureImage['file_name'];
+                $dataProductUpdate['feature_image_path'] = $dataUploadFeatureImage['file_path'];
             }
             $this->product->find($id)->update($dataProductUpdate);
             $product = $this->product->find($id);
+
             // Insert data to product_images
             if ($request->hasFile('image_path')) {
                 $this->productImage->where('product_id', $id)->delete();
                 foreach ($request->image_path as $fileItem) {
-                    $dataProductImageDetail = $this->storageTraitUploadMultiple($fileItem, 'product');
+                    $dataProductImageDetail = $this->storageTraitUploadMutiple($fileItem, 'product');
                     $product->images()->create([
                         'image_path' => $dataProductImageDetail['file_path'],
                         'image_name' => $dataProductImageDetail['file_name']
@@ -161,10 +158,10 @@ class AdminProductController extends Controller
             DB::rollBack();
             Log::error('Message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
         }
+
     }
 
-    public function delete($id){
+    public function delete($id) {
         return $this->deleteModelTrait($id, $this->product);
     }
-
 }

@@ -11,26 +11,15 @@
 |
 */
 
+Route::get('/admin', 'AdminController@loginAdmin');
+Route::post('/admin', 'AdminController@postLoginAdmin');
+
 Route::get('/home', function () {
     return view('home');
 });
 
+
 Route::prefix('admin')->group(function () {
-
-    Route::get('/', [
-        'as' => 'admin.login',
-        'uses' => 'AdminController@loginAdmin'
-    ]);
-    Route::post('/', [
-        'as' => 'admin.post-login',
-        'uses' => 'AdminController@postLoginAdmin'
-    ]);
-
-    Route::get('/logout', [
-        'as' => 'admin.logout',
-        'uses' => 'AdminController@logout'
-    ]);
-
     Route::prefix('categories')->group(function () {
         Route::get('/', [
             'as' => 'categories.index',
@@ -44,18 +33,22 @@ Route::prefix('admin')->group(function () {
             'as' => 'categories.store',
             'uses' => 'CategoryController@store'
         ]);
+
         Route::get('/edit/{id}', [
             'as' => 'categories.edit',
             'uses' => 'CategoryController@edit'
         ]);
+
         Route::post('/update/{id}', [
             'as' => 'categories.update',
             'uses' => 'CategoryController@update'
         ]);
+
         Route::get('/delete/{id}', [
             'as' => 'categories.delete',
             'uses' => 'CategoryController@delete'
         ]);
+
     });
 
     Route::prefix('menus')->group(function () {
@@ -75,6 +68,7 @@ Route::prefix('admin')->group(function () {
             'as' => 'menus.edit',
             'uses' => 'MenuController@edit'
         ]);
+
         Route::post('/update/{id}', [
             'as' => 'menus.update',
             'uses' => 'MenuController@update'
@@ -83,19 +77,15 @@ Route::prefix('admin')->group(function () {
             'as' => 'menus.delete',
             'uses' => 'MenuController@delete'
         ]);
+
     });
 
-//  Product
+    // Product
     Route::prefix('product')->group(function () {
         Route::get('/', [
             'as' => 'product.index',
             'uses' => 'AdminProductController@index'
         ]);
-        Route::get('/search', [
-            'as' => 'product.search',
-            'uses' => 'AdminProductController@search'
-        ]);
-
         Route::get('/create', [
             'as' => 'product.create',
             'uses' => 'AdminProductController@create'
@@ -108,6 +98,7 @@ Route::prefix('admin')->group(function () {
             'as' => 'product.edit',
             'uses' => 'AdminProductController@edit'
         ]);
+
         Route::post('/update/{id}', [
             'as' => 'product.update',
             'uses' => 'AdminProductController@update'
@@ -116,23 +107,26 @@ Route::prefix('admin')->group(function () {
             'as' => 'product.delete',
             'uses' => 'AdminProductController@delete'
         ]);
-    });
-});
 
-//  Slider
+    });
+
+    // Slider
     Route::prefix('slider')->group(function () {
         Route::get('/', [
             'as' => 'slider.index',
             'uses' => 'SliderAdminController@index'
         ]);
+
         Route::get('/create', [
             'as' => 'slider.create',
             'uses' => 'SliderAdminController@create'
         ]);
+
         Route::post('/store', [
             'as' => 'slider.store',
             'uses' => 'SliderAdminController@store'
         ]);
+
         Route::get('/edit/{id}', [
             'as' => 'slider.edit',
             'uses' => 'SliderAdminController@edit'
@@ -145,14 +139,19 @@ Route::prefix('admin')->group(function () {
             'as' => 'slider.delete',
             'uses' => 'SliderAdminController@delete'
         ]);
-});
 
-//  Setting
+
+
+
+    });
+
+    // Settings
     Route::prefix('settings')->group(function () {
         Route::get('/', [
             'as' => 'settings.index',
             'uses' => 'AdminSettingController@index'
         ]);
+
         Route::get('/create', [
             'as' => 'settings.create',
             'uses' => 'AdminSettingController@create'
@@ -173,11 +172,11 @@ Route::prefix('admin')->group(function () {
             'as' => 'settings.delete',
             'uses' => 'AdminSettingController@delete'
         ]);
+
+
+    });
 });
 
 
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
-});
 
 

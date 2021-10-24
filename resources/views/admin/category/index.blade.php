@@ -4,14 +4,15 @@
     <title>Trang chu</title>
 @endsection
 
-@section('header')
-    @include('partials.header-category')
+@section('js')
+    <script src="{{ asset('vendors/sweetAlert2/sweetalert2@9.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admins/main.js') }}"></script>
 @endsection
 
-
 @section('content')
+
     <div class="content-wrapper">
-        @include('partials.content-header', ['name' => 'Category', 'key' => 'List'])
+        @include('partials.content-header', ['name' => 'category', 'key' => 'List'])
 
         <div class="content">
             <div class="container-fluid">
@@ -29,27 +30,35 @@
                             </tr>
                             </thead>
                             <tbody>
+
                             @foreach($categories as $category)
+
                                 <tr>
                                     <th scope="row">{{ $category->id }}</th>
                                     <td>{{ $category->name }}</td>
                                     <td>
-                                        <a href="{{ route('categories.edit', ['id' => $category->id]) }}" class="btn btn-default">Edit</a>
-                                        <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn btn-danger">Delete</a>
+                                        <a href="{{ route('categories.edit', ['id' => $category->id]) }}"
+                                           class="btn btn-default">Edit</a>
+                                        <a href=""
+                                           data-url="{{ route('categories.delete', ['id' => $category->id]) }}"
+                                           class="btn btn-danger action_delete">Delete</a>
+
                                     </td>
                                 </tr>
                             @endforeach
+
                             </tbody>
                         </table>
                     </div>
                     <div class="col-md-12">
-                        {{ $categories->links()}}
+                        {{ $categories->links() }}
                     </div>
+
                 </div>
             </div>
         </div>
+
     </div>
+
 @endsection
-
-
 

@@ -2,12 +2,8 @@
 
 namespace App\Providers;
 
-use App\Category;
-use App\Components\Recusive;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -27,9 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $recusive = new Recusive(Category::all());
-        $htmlOptionSearchHeader = $recusive->categoryRecusive($parentId = '');
-        View::share('htmlOptionSearchHeader', $htmlOptionSearchHeader);
         Schema::defaultStringLength(191);
     }
 }

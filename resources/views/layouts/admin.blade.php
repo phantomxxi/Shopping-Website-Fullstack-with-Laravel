@@ -15,7 +15,7 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-    @yield('header')
+    @include('partials.header')
     @include('partials.siderbar')
 
     @yield('content')
@@ -31,4 +31,3 @@
 @yield('js')
 </body>
 </html>
-
