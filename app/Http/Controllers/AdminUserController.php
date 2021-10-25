@@ -6,6 +6,8 @@ use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class AdminUserController extends Controller
 {
@@ -28,13 +30,21 @@ class AdminUserController extends Controller
     }
 
     public function store(Request $request){
-        $user = $this->user->create([
-           'name' => $request-> name,
-           'email' => $request -> email,
-           'password' => Hash::make($request->password),
-        ]);
-        $roleIds = $request -> role_id;
-        $user->roles()->attach($roleIds);
+        try {
+            DB::beginTransaction();
+            $user = $this->user->create([
+                'name' => $request-> name,
+                'email' => $request -> email,
+                'password' => Hash::make($request->password),
+            ]);
+            $roleIds = $request -> role_id;
+            $user->roles()->attach($roleIds);
+            DB::commit();
+        }catch (\Exception $exception){
+            DB::rollBack();
+            Log::error('Message : '. $exception->getMessage() . '---Line:' .$exception->getLine());
+        }
+
         return redirect()->route('users.index');
     }
 }
