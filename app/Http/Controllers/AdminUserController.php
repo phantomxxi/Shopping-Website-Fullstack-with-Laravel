@@ -44,7 +44,14 @@ class AdminUserController extends Controller
             DB::rollBack();
             Log::error('Message : '. $exception->getMessage() . '---Line:' .$exception->getLine());
         }
-
         return redirect()->route('users.index');
+    }
+
+    public function edit($id)
+    {
+        $roles = $this->role->all();
+        $user = $this->user->find($id);
+        $rolesOfUser = $user->roles;
+        return view('admin.user.edit', compact('roles', 'user', 'rolesOfUser'));
     }
 }
