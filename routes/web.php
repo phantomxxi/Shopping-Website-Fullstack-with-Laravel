@@ -139,10 +139,6 @@ Route::prefix('admin')->group(function () {
             'as' => 'slider.delete',
             'uses' => 'SliderAdminController@delete'
         ]);
-
-
-
-
     });
 
     // Settings
@@ -202,6 +198,14 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', [
             'as' => 'users.delete',
             'uses' => 'AdminUserController@delete'
+        ]);
+    });
+
+//    Roles
+    Route::prefix('roles')->group(function () {
+        Route::get('/', [
+            'as' => 'roles.index',
+            'uses' => 'AdminRoleController@index'
         ]);
     });
 
