@@ -229,6 +229,14 @@ Route::prefix('admin')->group(function () {
         ]);
     });
 
+//    Permissions
+    Route::prefix('permissions')->group(function () {
+        Route::get('/create', [
+            'as' => 'permissions.create',
+            'uses' => 'AdminRoleController@createPermissions'
+        ]);
+    });
+
 });
 
 

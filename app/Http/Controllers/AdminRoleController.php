@@ -64,4 +64,9 @@ class AdminRoleController extends Controller
     {
         return $this->deleteModelTrait($id, $this->role);
     }
+
+    public function createPermissions()
+    {
+        return view('admin.permission.add');
+    }
 }
