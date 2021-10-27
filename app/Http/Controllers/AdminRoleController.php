@@ -10,10 +10,11 @@ class AdminRoleController extends Controller
 {
     private $role;
     private $permission;
+
     public function __construct(Role $role, Permission $permission)
     {
-        $this -> role = $role;
-        $this -> permission = $permission;
+        $this->role = $role;
+        $this->permission = $permission;
     }
 
     public function index()
@@ -26,5 +27,15 @@ class AdminRoleController extends Controller
     {
         $permissonsParent = $this->permission->where('parent_id', 0)->get();
         return view('admin.role.add', compact('permissonsParent'));
+    }
+
+    public function store(Request $request)
+    {
+        $role = $this->role->create([
+           'name' => $request -> name,
+           'display_name' => $request -> display_name
+        ]);
+        $role->permissions()->attach($request->permission_id);
+        return redirect()->route('roles.index');
     }
 }

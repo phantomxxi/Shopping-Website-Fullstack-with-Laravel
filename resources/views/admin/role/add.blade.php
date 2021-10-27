@@ -21,7 +21,7 @@
             <div class="container-fluid">
                 <div class="row">
 
-                    <form action="" method="post" enctype="multipart/form-data" style="width: 100%">
+                    <form action="{{ route('roles.store') }}" method="post" enctype="multipart/form-data" style="width: 100%">
                         <div class="col-md-12">
                             @csrf
                             <div class="form-group">
