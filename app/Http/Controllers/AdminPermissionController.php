@@ -25,15 +25,15 @@ class AdminPermissionController extends Controller
             'display_name' => $request -> module_parent,
             'parent_id' => 0,
         ]);
-
         foreach ($request->module_childrent as $value)
         {
             $this->permission->create([
                 'name' => $value,
                 'display_name' => $value,
                 'parent_id' => $permission->id,
-                'key_code' => $permission->module_parent . '_' . $value,
+                'key_code' => $request->module_parent . '_' . $value,
             ]);
         }
     }
+
 }

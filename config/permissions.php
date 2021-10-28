@@ -6,18 +6,18 @@ return [
         'list-menu' => 'list_menu'
     ],
     'table_module' => [
-        'Category',
-        'Slider',
-        'Menu',
-        'Product',
-        'Setting',
-        'User',
-        'Role',
+        'category',
+        'slider',
+        'menu',
+        'product',
+        'setting',
+        'user',
+        'role',
     ],
     'module_childrent' => [
-        'List',
-        'Add',
-        'Edit',
-        'Delete'
+        'list',
+        'add',
+        'edit',
+        'delete'
     ]
 ];
