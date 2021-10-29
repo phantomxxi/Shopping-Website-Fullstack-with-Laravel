@@ -76,6 +76,7 @@ class AdminUserController extends Controller
             DB::rollBack();
             Log::error('Message : ' . $exception->getMessage() . '---Line:' . $exception->getLine());
         }
+        return redirect()->route('users.index');
     }
 
     public function delete($id)
