@@ -7,6 +7,8 @@ return [
         'edit-category' => 'category_edit',
         'delete-category' => 'category_delete',
         'list-menu' => 'menu_list',
+        'edit-product' => 'product_edit',
+        'list-product' => 'product_list'
 
     ],
     'table_module' => [
