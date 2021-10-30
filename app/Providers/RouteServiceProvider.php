@@ -36,8 +36,15 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapApiRoutes();
-
         $this->mapWebRoutes();
+        $this->mapAdminCategoryWebRoutes();
+        $this->mapAdminProductWebRoutes();
+        $this->mapAdminMenuWebRoutes();
+        $this->mapAdminSliderWebRoutes();
+        $this->mapAdminSettingWebRoutes();
+        $this->mapAdminUserWebRoutes();
+        $this->mapAdminRoleWebRoutes();
+        $this->mapAdminPermissionWebRoutes();
 
         //
     }
@@ -55,6 +62,63 @@ class RouteServiceProvider extends ServiceProvider
              ->namespace($this->namespace)
              ->group(base_path('routes/web.php'));
     }
+
+    protected function mapAdminCategoryWebRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admins/category.php'));
+    }
+
+    protected function mapAdminProductWebRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admins/product.php'));
+    }
+
+    protected function mapAdminMenuWebRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admins/menu.php'));
+    }
+
+    protected function mapAdminSliderWebRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admins/slider.php'));
+    }
+
+    protected function mapAdminSettingWebRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admins/setting.php'));
+    }
+
+    protected function mapAdminUserWebRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admins/user.php'));
+    }
+
+    protected function mapAdminRoleWebRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admins/role.php'));
+    }
+
+    protected function mapAdminPermissionWebRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admins/permission.php'));
+    }
+
 
     /**
      * Define the "api" routes for the application.

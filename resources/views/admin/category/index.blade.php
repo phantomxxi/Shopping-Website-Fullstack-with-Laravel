@@ -18,7 +18,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
+                        @can('category-add')
                         <a href="{{ route('categories.create') }}" class="btn btn-success float-right m-2">Add</a>
+                        @endcan
                     </div>
                     <div class="col-md-12">
                         <table class="table">
@@ -37,12 +39,16 @@
                                     <th scope="row">{{ $category->id }}</th>
                                     <td>{{ $category->name }}</td>
                                     <td>
+                                        @can('category-edit')
+
                                         <a href="{{ route('categories.edit', ['id' => $category->id]) }}"
                                            class="btn btn-default">Edit</a>
+                                        @endcan
+                                        @can('category-delete')
                                         <a href=""
                                            data-url="{{ route('categories.delete', ['id' => $category->id]) }}"
                                            class="btn btn-danger action_delete">Delete</a>
-
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

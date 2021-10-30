@@ -19,6 +19,7 @@ use DB;
 class AdminProductController extends Controller
 {
     use StorageImageTrait, DeleteModelTrait;
+
     private $category;
     private $product;
     private $productImage;
@@ -26,7 +27,7 @@ class AdminProductController extends Controller
     private $productTag;
 
     public function __construct(Category $category, Product $product, ProductImage $productImage,
-                                Tag $tag, ProductTag $productTag)
+                                Tag      $tag, ProductTag $productTag)
     {
         $this->category = $category;
         $this->product = $product;
@@ -161,7 +162,8 @@ class AdminProductController extends Controller
 
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         return $this->deleteModelTrait($id, $this->product);
     }
 }
