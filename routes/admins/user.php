@@ -11,7 +11,7 @@ Route::prefix('users')->group(function () {
         'as' => 'users.create',
         'uses' => 'AdminUserController@create',
 //        'middleware' => 'can:user-add'
-    ]);s
+    ]);
     Route::post('/store', [
         'as' => 'users.store',
         'uses' => 'AdminUserController@store'

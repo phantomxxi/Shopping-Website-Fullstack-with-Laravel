@@ -77,7 +77,7 @@ class AdminProductController extends Controller
             // Insert data to product_images
             if ($request->hasFile('image_path')) {
                 foreach ($request->image_path as $fileItem) {
-                    $dataProductImageDetail = $this->storageTraitUploadMutiple($fileItem, 'product');
+                    $dataProductImageDetail = $this->storageTraitUploadMultiple($fileItem, 'product');
                     $product->images()->create([
                         'image_path' => $dataProductImageDetail['file_path'],
                         'image_name' => $dataProductImageDetail['file_name']
@@ -87,6 +87,7 @@ class AdminProductController extends Controller
             }
 
             // Insert tags for product
+            $tagIds = [];
             if (!empty($request->tags)) {
                 foreach ($request->tags as $tagItem) {
                     // Insert to tags
@@ -145,6 +146,7 @@ class AdminProductController extends Controller
             }
 
             // Insert tags for product
+            $tagIds = [];
             if (!empty($request->tags)) {
                 foreach ($request->tags as $tagItem) {
                     // Insert to tags

@@ -12,7 +12,7 @@ function actionDelete(event){
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
-        if (result.isConfirmed) {
+        if (result.value) {
             // call AJAX de xoa ban ghi trong database
             $.ajax({
                type: 'GET',

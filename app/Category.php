@@ -9,5 +9,5 @@ class Category extends Model
 {
     use SoftDeletes;
     // Quy dinh truong nao duoc phep insert
-    protected $fillable = ['name', 'parent_id', 'slug'];
+    protected $guarded = [];
 }
